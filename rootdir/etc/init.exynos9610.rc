@@ -302,9 +302,12 @@ on post-fs-data
 # Samsung Pay
 #    mkdir /efs/pfw_data 0760 vendor_spay vendor_spay
 
-# MST/NFC Switch
-#    chown vendor_spay system /dev/mst_ctrl
-#    chmod 0660 /dev/mst_ctrl
+# NFC
+    mkdir /data/vendor/nfc 0770 nfc nfc
+
+# NFC: create /efs/sec_efs/nfc and /efs/nfc for nv storage
+    mkdir /efs/sec_efs/nfc 0700 nfc nfc
+    mkdir /efs/nfc 0700 nfc nfc
 
 on boot
 # SSWAP
@@ -732,6 +735,17 @@ service watchdogd /system/bin/watchdogd 10 20
      class core
      oneshot
      seclabel u:r:watchdogd:s0
+
+# Start NFC on supported variants
+service nfc_hal_service /vendor/bin/hw/android.hardware.nfc@1.2-service.samsung
+    override
+    class hal
+    user nfc
+    group nfc
+    disabled
+
+on property:ro.boot.product.hardware.sku=NFC
+    start nfc_hal_service
 
 on property:ro.bootmode=charger
     wait /dev/block/platform/13520000.ufs/by-name/sec_efs
