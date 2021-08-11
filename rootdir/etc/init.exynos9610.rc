@@ -299,8 +299,6 @@ on post-fs-data
 
     # write /sys/module/scsc_mx/parameters/disable_recovery_handling 0
 
-# Samsung Pay
-#    mkdir /efs/pfw_data 0760 vendor_spay vendor_spay
 
 # NFC
     mkdir /data/vendor/nfc 0770 nfc nfc
