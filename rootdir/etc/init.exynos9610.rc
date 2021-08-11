@@ -8,12 +8,7 @@ on init
     # Set permissions for persist partition
     mkdir /persist 0771 system system
 
-    #Reactivation Lock
-    symlink /dev/block/platform/13520000.ufs/by-name/steady /dev/block/steady
-
-    #Google FRP solution
-    symlink /dev/block/platform/13520000.ufs/by-name/persistent /dev/block/persistent
-
+    
     ## SCSC WLAN
     # SD-755: Increase default socket rx buffer limit
     # Apply network parameters for high data performance.
