@@ -58,9 +58,14 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     vendor.lineage.fastcharge@1.0-service.samsung
 
-# Figerprint
-#PRODUCT_PACKAGES += \
- #   android.hardware.biometrics.fingerprint@2.1-service.samsung
+# Fingerprint
+PRODUCT_PACKAGES += \
+    android.hardware.biometrics.fingerprint@2.1-service.samsung
+
+ifeq ($(TARGET_HAVE_FOD),true)
+PRODUCT_PACKAGES += \
+    vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.samsung
+endif
 
 # Gatekeeper
 PRODUCT_PACKAGES += \
