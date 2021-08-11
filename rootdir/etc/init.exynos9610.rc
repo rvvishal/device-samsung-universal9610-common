@@ -307,6 +307,10 @@ on post-fs-data
     mkdir /efs/sec_efs/nfc 0700 nfc nfc
     mkdir /efs/nfc 0700 nfc nfc
 
+# MST/NFC Switch
+    chown system /dev/mst_ctrl
+    chmod 0660 /dev/mst_ctrl
+
 on boot
 # SSWAP
     write /proc/sys/vm/swappiness 130
